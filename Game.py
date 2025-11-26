@@ -1,4 +1,34 @@
-input("Vad vill du göra?")
-input("1. Öppna inventoryt \n2. Öppna en av tre dörrrar")
+import random 
+from Player import *
+from Monster import *
+import sys,time
 
-if 
+typing_speed = 50 #wpm
+def slow_type(t):
+    for l in t:
+        sys.stdout.write(l)
+        sys.stdout.flush()
+        time.sleep(random.random()*10.0/typing_speed)
+    print ("")
+
+
+
+print("hejsan")
+slow_type("hejsan")
+
+
+
+karaktär = input("Välj en karaktär:")
+
+
+
+
+
+
+
+
+
+
+
+
+
