@@ -1,9 +1,9 @@
 import random
-from Kista import *
+from Kista import Kista 
 
 class Player():
-    Giant = {"namn": "Giant", "hp": 70, "strength": 20}
-    Wizard = {"namn": "Wizard", "hp": 140, "strength": 5}
+    Giant = {"namn": "Giant", "hp": 120, "strength": 10}
+    Wizard = {"namn": "Wizard", "hp": 80, "strength": 8}
     Raider = {"namn": "Raider", "hp": 100, "strength": 12}
 
     ALL_CHARCTERS = [Giant, Wizard, Raider]
@@ -74,22 +74,13 @@ class Player():
             print(f"    * {name} (+{dmg} skada){mark}")
         print("=" * 30 + "\n")
 
-    def open_chest(self):
-        outcomes = ["weapon", "armour", "healt potion"]
-        result = random.choice(outcomes)
-
-        if result ==  "armour":
-            self.max_hp += 30
-            self.hp += 30
-            print("Du fick en rustning i kistan! \n +30 i hp")
-
-        elif result == "weapon":
-            new_weapon = random.choice(["sword", "axe", "arrow", "dagger"])
-            self.add_weapon(new_weapon)
-            if random.random() < 0.4:
-                self.equip_weapon(new_weapon)
-                print(f"Du fick en ny{new_weapon} \n ")
-
-        else: 
-            self.heal(40)
-            print("Du hittade en health potion! \n +40 i hp")
+    def open_chest(self, kista):
+        kista.open(self)
+    
+    def show_status(self):
+        print("\n" + "=" * 40)
+        print(f"    Level: {self.level}")
+        print(f"    HP: {self.hp}/{self.max_hp}")
+        print(f"    Styrka: {self.base_strength} + {Player.WEAPONS[self.equipped]['damage']} = {self.get_strength()}")
+        print(f"    Vapen: {Player.WEAPONS[self.equipped]['name']}")
+        print("=" * 40 + "\n") 
