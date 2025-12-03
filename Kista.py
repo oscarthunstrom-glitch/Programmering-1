@@ -1,5 +1,5 @@
 import random
-from Player import Player
+from Player import *
 
 class Kista: 
     def __init__(self):

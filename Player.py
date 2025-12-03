@@ -1,5 +1,5 @@
 import random
-from Kista import Kista 
+from Kista import * 
 
 class Player():
     Giant = {"namn": "Giant", "hp": 120, "strength": 10}
@@ -66,7 +66,7 @@ class Player():
 
     def show_inventory(self):
         print("\n" + "=" * 30)
-        print(" INVENTORY")
+        print("INVENTORY")
         for w in self.inventory:
             name = Player.WEAPONS[w]["name"]
             dmg = Player.WEAPONS[w]["strength"]
