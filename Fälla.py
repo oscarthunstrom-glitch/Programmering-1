@@ -32,6 +32,6 @@ class Fälla:
             player.take_damage(40)
             player.level += 1
             print("Du går upp en level trots skadan!")
-            print("Du är nu level {player.level}.")
+            print(f"Du är nu level {player.level}.")
             print("... men du tog 40 skada från giftpilen!")
         

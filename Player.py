@@ -1,10 +1,9 @@
 import random
-from Kista import * 
 
 class Player():
-    Giant = {"namn": "Giant", "hp": 120, "strength": 10}
-    Wizard = {"namn": "Wizard", "hp": 80, "strength": 8}
-    Raider = {"namn": "Raider", "hp": 100, "strength": 12}
+    Giant = {"namn": "Giant", "hp": 120, "strength": 50}
+    Wizard = {"namn": "Wizard", "hp": 80, "strength": 30}
+    Raider = {"namn": "Raider", "hp": 100, "strength": 40}
 
     ALL_CHARCTERS = [Giant, Wizard, Raider]
 
@@ -16,11 +15,13 @@ class Player():
         "axe":    {"name": "yxa",           "strength": 12},
     }
 
+    MAX_level = 5
+
     def __init__(self, character_type):
-        self.name = character_type["name"]
+        self.name = character_type["namn"]
         self.max_hp = character_type["hp"]
         self.hp = character_type["hp"]
-        self.strength = character_type["strength"]
+        self.base_strength = character_type["strength"]
         self.level = 1
         
         self.inventory = ["hands"]
@@ -30,18 +31,21 @@ class Player():
         self.hp -= damage
         if self.hp < 0:
             self.hp = 0
-        print(f"{self.name} tog {self.damage} skada. HP: {self.hp}/{self.hp_max}")
+        print(f"{self.name} tog {damage} skada. HP: {self.hp}/{self.max_hp}")
 
     def heal(self, amount):
         self.hp += amount 
         if self.hp > self.max_hp:
             self.hp =  self.max_hp 
-        print(f"{self.name} healade {amount} HP -> {self.hp}/{self.hp_max}")
+        print(f"{self.name} healade {amount} HP -> {self.hp}/{self.max_hp}")
 
     def is_alive(self):
         return self.hp > 0
     
     def level_up(self):
+        if self.level >= Player.MAX_level:
+            print(f"{self.name} har redan nått max level!")
+            return
         self.level += 1
         self.max_hp += 25
         self.hp = self.max_hp
@@ -63,6 +67,10 @@ class Player():
             print(f"Du fick {Player.WEAPONS[weapon_key]['name']}!")
         else:
             print("Du har inte det vapnet!")
+    
+    def get_strength(self):
+        return self.base_strength + Player.WEAPONS[self.equipped]['strength']
+        
 
     def show_inventory(self):
         print("\n" + "=" * 30)
@@ -75,12 +83,12 @@ class Player():
         print("=" * 30 + "\n")
 
     def open_chest(self, kista):
-        kista.open(self)
+        kista.open_chest(self)
     
     def show_status(self):
         print("\n" + "=" * 40)
         print(f"    Level: {self.level}")
         print(f"    HP: {self.hp}/{self.max_hp}")
-        print(f"    Styrka: {self.base_strength} + {Player.WEAPONS[self.equipped]['damage']} = {self.get_strength()}")
+        print(f"    Styrka: {self.get_strength()}") 
         print(f"    Vapen: {Player.WEAPONS[self.equipped]['name']}")
         print("=" * 40 + "\n") 
