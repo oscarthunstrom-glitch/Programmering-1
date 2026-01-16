@@ -8,12 +8,12 @@ import sys,time,random
 
 def show_title():
     print("""
-______________ ______________  ___________.___ _______      _____  .____      __________ ________    _________ _________
-\__    ___/   |   \_   _____/  \_   _____/|   |\      \    /  _  \ |    |     \______   \\_____  \  /   _____//   _____/
-  |    | /    ~    \    __)_    |    __)  |   |/   |   \  /  /_\  \|    |      |    |  _/ /   |   \ \_____  \ \_____  \ 
-  |    | \    Y    /        \   |     \   |   /    |    \/    |    \    |___   |    |   \/    |    \/        \/        \
-  |____|  \___|_  /_______  /   \___  /   |___\____|__  /\____|__  /_______ \  |______  /\_______  /_______  /_______  /
-                \/        \/       \/                \/         \/        \/         \/         \/        \/        \/  
+______________ ______________  ___________._____    _____       _____    ____       __________    _____    _________________
+\\__    ___/   |   \\_   _____/  \\_  _____/|   |  /     \\    /  _ \\   |   |    \\______   \\_ /     \\  / _____/  / _____/
+  |    | /    ___  \\   __)_      |    __)  |   | /   |   \\  /  /_\\ \\ |   |      |    |  _/  /   |  \\ \\_____  \\\\_____\\ 
+  |    | \\         /        \\   |     \\  |   |/    |    \\/    |    \\|   |___   |    |   \\/    |   \\/        \\/       \\
+  |____|  \\___|_  /________ /   \\____ /   |___|\\___|____/\\____|____/ |______ |\\|________/\\_________/________ /________ /
+                                                                                                                        
           
           """)
 
@@ -21,13 +21,13 @@ show_title()
 
 
 
-def show_menu():
-    print("\n" + "=" * 80)
+def show_menu(): 
+    print("\n" + "=" * 65)
     print("                 VAD VILL DU GÖRA?")
-    print("=" * 80)
-    print(" 1. Öppna dörr 1     2. Öppna dörr 2     3. Öppna dörr 3")
-    print("4. Visa status       5. Visa inventory   q. Avluta")
-    print("=" * 80)
+    print("=" * 65)
+    print("1. Öppna dörr 1     2. Öppna dörr 2     3. Öppna dörr 3")
+    print("4. Visa status       5. Visa inventory   q. Avsluta")
+    print("=" * 65)
 
 
 def print_slow(str):
@@ -39,25 +39,25 @@ def print_slow(str):
 print_slow("Välkommen till THE FINAL BOSS!\n")
 print_slow("Du står i en enorm, mörk grotta. Framför dig har du tre mystiska dörrar...\n")
 
-print_slow("Välj först din karaktär:\n")
+print_slow("Men först, välj din karaktär:\n")
 print("1. Giant  (Easy mode🟢)")
-print("3. Raider (Normal mode🟡)")
-print("2. Wizard (Hard mode🔴)")    
+print("2. Raider (Normal mode🟡)")
+print("3. Wizard (Hard mode🔴)")    
   
 while True:
-    val = input("Skriv in 1,2 eller 3 för att välja din karaktär!").strip() 
+    val = input("Skriv in 1, 2 eller 3 för att välja din karaktär:").strip() 
 
     if val == "1":
         player = Player(Player.Giant)
         print_slow(f"\nDu valde Giant!")
         break
     elif val == "2":
-        player = Player(Player.Wizard)
-        print_slow(f"\nDu valde Wizard!")
-        break
-    elif val == "3":
         player = Player(Player.Raider)
         print_slow(f"\nDu valde Raider")
+        break
+    elif val == "3":
+        player = Player(Player.Wizard)
+        print_slow(f"\nDu valde Wizard!")
         break
     else:
         print("Välj 1,2 eller 3 tack!\n")
@@ -71,7 +71,7 @@ while player.is_alive():
 
     if val in ["1", "2", "3"]:
         print_slow(f"\nDu närmar dig dörr {val}...")
-        input("Tryck på Enter-knappen för att öppna dörren...")
+        input("\nTryck på Enter-knappen för att öppna dörren...")
 
         if player.level >= 5:
             encounter = "finalboss"
@@ -107,8 +107,8 @@ while player.is_alive():
                     print_slow(f"\nDu rymde från striden mot {monster.name}!")
                     break
                 else:
-                    print("⚠️Ogiltigt val, försök igen⚠️.")
-
+                    print("⚠️ Ogiltigt val, försök igen ⚠️")
+#THEFINALBOSS FIGHT                    
         elif encounter == "finalboss":
             boss = THEFINALBOSS()
             boss.show()
@@ -121,7 +121,6 @@ while player.is_alive():
                 if action == "a":
                     dmg = player.get_strength()
                     boss.take_damage(dmg)
-                    print_slow(f"\nTrots att alla nerver säger emot attacerar du {boss.name} och gjorde {dmg} skada! {max(boss.hp,0)} HP kvar på bossen.\n")
 
                     if boss.is_alive():
                         boss_dmg = boss.attack()
@@ -131,8 +130,8 @@ while player.is_alive():
                             break
                     else:
                         print_slow(f"\n🎉 Du besegrade {boss.name}! 🎉")
-                        print_slow("Du utförde det omöjlig och besegrade grottan!\nTHEFINALBOSS.....DEFEATED!")
-                        break
+                        print_slow("Du utförde det omöjliga och besegrade THEFINALBOSS!\nTHEFINALBOSS.....DEFEATED!")
+                        sys.exit()
 
                 elif action == "r":
                     if random.random() < 0.01:
@@ -146,7 +145,7 @@ while player.is_alive():
                             print_slow("\nDu har dött i ditt försök att fly - GAME OVER")
                             break
                 else:
-                    print("Ogiltigt val, försök igen.")
+                    print("⚠️Ogiltigt val, försök igen⚠️")
 
         else:
             print("\nEn dold fälla aktiverades!")
@@ -159,7 +158,7 @@ while player.is_alive():
         player.show_inventory()
     elif val in ["q", "quit", "avsluta"]:
         print_slow("\nDu väljer att inte fortsätta spelet eftersom du blev för rädd för fladdermössen i taket...\n")
-        print_slow("Tack för att du spelade THE FINAL BOSS!")
+        print_slow("Nu har du äntligen spelat THE FINAL BOSS!")
         break
     else: 
         print("Ogiltigt val - försök igen!!!")

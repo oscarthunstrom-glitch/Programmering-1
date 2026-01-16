@@ -1,10 +1,10 @@
-import random
+import random    
 
-class Kista:
+class Kista:    #fler kistor
     def __init__(self):
         pass
 
-    def open_chest(self, player):
+    def open_chest(self, player):    
         outcomes = ["weapon", "armour", "health potion"]
         result = random.choice(outcomes)
 
@@ -13,14 +13,14 @@ class Kista:
             player.hp += 30
             if player.hp > player.max_hp:
                 player.hp = player.max_hp
-            print("Du fick en rustning i kistan! \n +30 i hp")
+            print(" Du fick en rustning i kistan! \n +30 i hp")
 
         elif result == "weapon":
             new_weapon = random.choice(["sword", "axe", "arrow", "dagger"])
             player.add_weapon(new_weapon)
-            if random.random() < 0.4:
+            if random.random() < 1.0:     #lite onödigt
                 player.equip_weapon(new_weapon)
-                print(f"Du fick ditt nya vapen: {player.WEAPONS[new_weapon]['name']}!\n")
+               
 
         else:
             player.heal(40)

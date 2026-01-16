@@ -9,7 +9,7 @@ class Player():
 
     WEAPONS = {
         "hands":  {"name": "bara händerna", "strength": 2},
-        "sword":  {"name": "svärd",         "strength": 8},
+        "katana":  {"name": "katana",         "strength": 8},
         "dagger": {"name": "dolk",          "strength": 6},
         "arrow":  {"name": "pil",           "strength": 8},
         "axe":    {"name": "yxa",           "strength": 12},
@@ -37,7 +37,7 @@ class Player():
         self.hp += amount 
         if self.hp > self.max_hp:
             self.hp =  self.max_hp 
-        print(f"{self.name} healade {amount} HP -> {self.hp}/{self.max_hp}")
+        print(f" {self.name} healade {amount} HP ------> {self.hp}/{self.max_hp}")
 
     def is_alive(self):
         return self.hp > 0
@@ -51,20 +51,21 @@ class Player():
         self.hp = self.max_hp
         self.base_strength += 4
 
-        print(f"\n 🌟🌟🌟{self.name} GICK UPP EN LEVEL!🌟🌟🌟")
+        print(f"\n 🌟🌟🌟 {self.name} GICK UPP EN LEVEL! 🌟🌟🌟")
+        print("Du använder din besegrade fiendes kvarlevor för att skapa en dryck som återställer ditt HP!")
         print(f"-> Level {self.level} --- +25 HP --- +4 grundstyrka")
+
     
     def add_weapon(self, weapon_key):
         if weapon_key in Player.WEAPONS and weapon_key not in self.inventory:
             self.inventory.append(weapon_key)
-            print(f"Du hittade ett {Player.WEAPONS[weapon_key]['name']}!")
+            print(f" Du hittade en {Player.WEAPONS[weapon_key]['name']}!")
         elif weapon_key in self.inventory:
             print("Du har redan det vapnet.")
 
     def equip_weapon(self, weapon_key):
         if weapon_key in self.inventory:
             self.equipped = weapon_key
-            print(f"Du fick {Player.WEAPONS[weapon_key]['name']}!")
         else:
             print("Du har inte det vapnet!")
     
@@ -75,11 +76,11 @@ class Player():
     def show_inventory(self):
         print("\n" + "=" * 30)
         print("INVENTORY")
-        for w in self.inventory:
-            name = Player.WEAPONS[w]["name"]
-            dmg = Player.WEAPONS[w]["strength"]
-            mark = "<- UTRUSTAD" if w == self.equipped else ""
-            print(f"    * {name} (+{dmg} skada){mark}")
+        for w in self.inventory:                              #loopar igenom alla vapen i inventory
+            name = Player.WEAPONS[w]["name"]                  #namnet på vapnet
+            dmg = Player.WEAPONS[w]["strength"]               #styrkan på vapnet
+            mark = "<- Equipped" if w == self.equipped else ""  #vapnet som du equippar
+            print(f"    * {name} (+{dmg} skada){mark}")   #vapeninfo
         print("=" * 30 + "\n")
 
     def open_chest(self, kista):
