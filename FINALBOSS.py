@@ -50,13 +50,6 @@ class THEFINALBOSS:
       /_|___/   \\___|_\\ """
 
 
-def print_slow(str):
-    for letter in str:
-        sys.stdout.write(letter)
-        sys.stdout.flush()
-        time.sleep(0.05)
-
-
     def show(self):
         print(self.art)
 
@@ -69,10 +62,15 @@ def print_slow(str):
         self.hp -= damage
         print_slow(f"{self.name} ger ifrån sig ett grsoteskt vrål!\n{self.name} Blev träffad och tog {damage} i skada! {self.hp} återstår...hur ska fortsättningen gå!?")
         return self.hp
-    
+
     def is_alive(self):    #ifall bossen lever
         alive = self.hp > 0
         if not alive:
             print_slow(f"{self.name} faller till marken med ett öronbedövande vrål!")
         return alive
-    
+
+def print_slow(str):
+    for letter in str:
+        sys.stdout.write(letter)
+        sys.stdout.flush()
+        time.sleep(0.05)

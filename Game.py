@@ -6,6 +6,24 @@ from Fälla import *
 from FINALBOSS import *
 import sys,time,random
 
+
+Giant = {"namn": "Giant", "hp": 120, "strength": 50}
+Wizard = {"namn": "Wizard", "hp": 80, "strength": 30}
+Raider = {"namn": "Raider", "hp": 100, "strength": 40}
+
+ALL_CHARCTERS = [Giant, Wizard, Raider]
+
+WEAPONS = {
+    "hands":  {"name": "bara händerna", "strength": 2},
+    "katana":  {"name": "katana",         "strength": 8},
+    "dagger": {"name": "dolk",          "strength": 6},
+    "arrow":  {"name": "pil",           "strength": 8},
+    "axe":    {"name": "yxa",           "strength": 12},
+}
+
+MAX_level = 5
+
+
 def show_title():
     print("""
 ______________ ______________  ___________._____    _____       _____    ____       __________    _____    _________________
@@ -48,15 +66,15 @@ while True:
     val = input("Skriv in 1, 2 eller 3 för att välja din karaktär:").strip() 
 
     if val == "1":
-        player = Player(Player.Giant)
+        player = Player(Giant)
         print_slow(f"\nDu valde Giant!")
         break
     elif val == "2":
-        player = Player(Player.Raider)
+        player = Player(Raider)
         print_slow(f"\nDu valde Raider")
         break
     elif val == "3":
-        player = Player(Player.Wizard)
+        player = Player(Wizard)
         print_slow(f"\nDu valde Wizard!")
         break
     else:

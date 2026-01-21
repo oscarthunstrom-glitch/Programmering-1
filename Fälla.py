@@ -5,7 +5,7 @@ class Fälla:
         pass
 
     def aktivera(self, player):
-       print("\n💥 DU TRAMPAR PÅ EN FÄLLA! 💥")
+       print("\n💥 DU TRAMPAR I EN FÄLLA! 💥")
 
        fälla_typ = random.choice(["djupt_hål", "björnfälla", "giftpilar"])
 
@@ -16,7 +16,7 @@ class Fälla:
        elif fälla_typ == "björnfälla":
               print("En björnfälla klämmer åt ditt ben!")
               player.take_damage(30)
-              
+            
        else:
             print("En giftpil träffar dig rakt i bröstet!")
             player.take_damage(40)

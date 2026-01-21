@@ -1,6 +1,6 @@
 import random    
 
-class Kista:    #fler kistor
+class Kista:    
     def __init__(self):
         pass
 
@@ -13,7 +13,7 @@ class Kista:    #fler kistor
             player.hp += 30
             if player.hp > player.max_hp:
                 player.hp = player.max_hp
-            print(" Du fick en rustning i kistan! \n +30 i hp")
+            print(" Du fick en rustning i kistan! \n Det ger dig +30 i hp!")
 
         elif result == "weapon":
             new_weapon = random.choice(["sword", "axe", "arrow", "dagger"])

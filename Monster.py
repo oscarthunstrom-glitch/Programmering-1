@@ -50,7 +50,7 @@ def skapa_slumpmonster():
     return Monster(
         name = monster_data["name"],
         hp = monster_data["hp"],
-        strength = monster_data["strength"]    #färdiglagat monster
+        strength = monster_data["strength"]    #färdiglagat monster 
     )
 
 

@@ -1,22 +1,6 @@
 import random
 
 class Player():
-    Giant = {"namn": "Giant", "hp": 120, "strength": 50}
-    Wizard = {"namn": "Wizard", "hp": 80, "strength": 30}
-    Raider = {"namn": "Raider", "hp": 100, "strength": 40}
-
-    ALL_CHARCTERS = [Giant, Wizard, Raider]
-
-    WEAPONS = {
-        "hands":  {"name": "bara händerna", "strength": 2},
-        "katana":  {"name": "katana",         "strength": 8},
-        "dagger": {"name": "dolk",          "strength": 6},
-        "arrow":  {"name": "pil",           "strength": 8},
-        "axe":    {"name": "yxa",           "strength": 12},
-    }
-
-    MAX_level = 5
-
     def __init__(self, character_type):
         self.name = character_type["namn"]
         self.max_hp = character_type["hp"]
